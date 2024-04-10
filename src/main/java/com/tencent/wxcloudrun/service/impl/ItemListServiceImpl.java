@@ -25,8 +25,8 @@ public class ItemListServiceImpl implements ItemListService {
     }
 
     @Override
-    public List<ItemModel> getItemList(String searchStr, List<String> categories, Integer lastIndex) {
-        List<ItemModel> itemList = itemModelMapper.getItemList(searchStr, categories, lastIndex);
+    public List<ItemModel> getItemList(String searchStr, List<String> categories, Integer offset) {
+        List<ItemModel> itemList = itemModelMapper.getItemList(searchStr, categories, offset);
         return itemList;
     }
 }

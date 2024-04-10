@@ -1,0 +1,17 @@
+server:
+  port: 80
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1/g_wiki?serverTimezone=UTC
+    username: root
+    password: 123456
+  mvc:
+    view:
+      suffix: .html
+      prefix: /
+
+mybatis:
+  mapper-locations: classpath*:mapper/*Mapper.xml

@@ -17,6 +17,8 @@
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.tencent.wxcloudrun.model.ItemModel">
     <result column="info_object" jdbcType="LONGVARCHAR" property="infoObject" />
   </resultMap>
+
+
   <sql id="Base_Column_List">
     id, create_time, update_time, is_delete, `name`, description, category_id, category_name, 
     sub_category_id, sub_category_name, image_url
@@ -33,16 +35,23 @@
     where id = #{id,jdbcType=BIGINT}
   </select>
 
-  <select id="getItemList" resultType="com.tencent.wxcloudrun.model.ItemModel">
+  <select id="getItemList" resultMap="BaseResultMap">
     select name, description, category_name, sub_category_name
     from item_model
-    where name like '%#{searchStr}%'
-    and category_name in
-    <foreach item="id" collection="categories" open="(" separator="," close=")">
-      #{id}
-    </foreach>
-    limit 20
-    offset '#{offset}'
+    <where>
+      <if test="searchStr != null and searchStr != ''">
+        and name like '%${searchStr}%'
+      </if>
+      <if test="categories != null and categories.size() != 0">
+        and category_name in
+        <foreach item="id" collection="categories" open="(" separator="," close=")">
+          #{id}
+        </foreach>
+      </if>
+    </where>
+    <if test="offset != null">
+      LIMIT 20 OFFSET #{offset}
+    </if>
   </select>
 
 

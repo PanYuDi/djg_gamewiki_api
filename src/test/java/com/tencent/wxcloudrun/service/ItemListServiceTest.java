@@ -21,6 +21,7 @@ public class ItemListServiceTest {
     @Test
     public void testGetItemList() {
         List<ItemModel> itemList = itemListService.getItemList("", new ArrayList<>(), 0);
+        System.out.println(itemList);
 
     }
 }
