@@ -32,6 +32,20 @@
     from item_model
     where id = #{id,jdbcType=BIGINT}
   </select>
+
+  <select id="getItemList" resultType="com.tencent.wxcloudrun.model.ItemModel">
+    select name, description, category_name, sub_category_name
+    from item_model
+    where name like '%#{searchStr}%'
+    and category_name in
+    <foreach item="id" collection="categories" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+    limit 20
+    offset '#{offset}'
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from item_model
     where id = #{id,jdbcType=BIGINT}
