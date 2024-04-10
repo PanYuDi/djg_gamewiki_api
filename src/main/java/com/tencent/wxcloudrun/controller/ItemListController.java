@@ -20,7 +20,6 @@ import java.util.List;
  * @Description: TODO
  */
 @RestController
-@Api(tags = "ItemListController", description = "item list controller")
 public class ItemListController {
     final ItemListService itemListService;
 
@@ -35,7 +34,6 @@ public class ItemListController {
         return ApiResponse.ok(itemModel);
     }
 
-    @ApiOperation("get item list")
     @GetMapping(value = "/v1/list")
     public ApiResponse<ItemListResponse> getItemList(@RequestParam(required = false) String searchStr, @RequestParam(required = false) List<String> categories, @RequestParam(defaultValue = "-1", required = false) Integer lastIndex) {
         List<ItemModel> listItems = itemListService.getItemList(searchStr, categories, lastIndex + 1);
