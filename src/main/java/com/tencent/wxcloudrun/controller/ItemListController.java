@@ -36,7 +36,7 @@ public class ItemListController {
     }
 
     @ApiOperation("get item list")
-    @GetMapping(value = "/v1/list/")
+    @GetMapping(value = "/v1/list")
     public ApiResponse<ItemListResponse> getItemList(@RequestParam(required = false) String searchStr, @RequestParam(required = false) List<String> categories, @RequestParam(defaultValue = "-1", required = false) Integer lastIndex) {
         List<ItemModel> listItems = itemListService.getItemList(searchStr, categories, lastIndex + 1);
         ItemListResponse response = new ItemListResponse();
