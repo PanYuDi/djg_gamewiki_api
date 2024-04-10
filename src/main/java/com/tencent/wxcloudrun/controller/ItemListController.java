@@ -35,14 +35,19 @@ public class ItemListController {
         return ApiResponse.ok(itemModel);
     }
 
-    @GetMapping(value = "/v1/list/")
     @ApiOperation("get item list")
-    public ApiResponse<ItemListResponse> getItemList(@RequestParam String searchStr, @RequestParam List<String> categories, @RequestParam Integer lastIndex) {
-        List<ItemModel> listItems = itemListService.getItemList(searchStr, categories, lastIndex);
+    @GetMapping(value = "/v1/list/")
+    public ApiResponse<ItemListResponse> getItemList(@RequestParam(required = false) String searchStr, @RequestParam(required = false) List<String> categories, @RequestParam(defaultValue = "-1", required = false) Integer lastIndex) {
+        List<ItemModel> listItems = itemListService.getItemList(searchStr, categories, lastIndex + 1);
         ItemListResponse response = new ItemListResponse();
         response.setItemList(listItems);
         response.setFirstIndex(lastIndex + 1);
         response.setLastIndex(lastIndex + 1 + listItems.size());
         return ApiResponse.ok(response);
+    }
+
+    @GetMapping(value = "/v1/category/list")
+    public ApiResponse<List<String>> getCategoryList() {
+        return null;
     }
 }
