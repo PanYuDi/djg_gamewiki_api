@@ -1,6 +1,7 @@
 package com.tencent.wxcloudrun.service;
 
 import com.tencent.wxcloudrun.model.ItemModel;
+import com.tencent.wxcloudrun.vo.ItemListResponse;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -12,5 +13,5 @@ import java.util.List;
  */
 public interface ItemListService {
     public ItemModel getItemModel(Long id);
-    public List<ItemModel> getItemList(String searchStr, List<String> categories, Integer offset);
+    public ItemListResponse getItemList(String searchStr, List<String> categories, Integer offset);
 }

@@ -53,6 +53,21 @@
       LIMIT 20 OFFSET #{offset}
     </if>
   </select>
+  <select id="getTotalCount" resultType="java.lang.Integer">
+    select count(*)
+    from item_model
+    <where>
+      <if test="searchStr != null and searchStr != ''">
+        and name like '%${searchStr}%'
+      </if>
+      <if test="categories != null and categories.size() != 0">
+        and category_name in
+        <foreach item="id" collection="categories" open="(" separator="," close=")">
+          #{id}
+        </foreach>
+      </if>
+    </where>
+  </select>
 
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">

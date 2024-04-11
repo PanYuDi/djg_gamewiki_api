@@ -34,12 +34,8 @@ public class ItemListController {
 
     @GetMapping(value = "/v1/list")
     public ApiResponse<ItemListResponse> getItemList(@RequestParam(required = false) String searchStr, @RequestParam(required = false) List<String> categories, @RequestParam(defaultValue = "-1", required = false) Integer lastIndex) {
-        List<ItemModel> listItems = itemListService.getItemList(searchStr, categories, lastIndex + 1);
-        ItemListResponse response = new ItemListResponse();
-        response.setItemList(listItems);
-        response.setFirstIndex(lastIndex + 1);
-        response.setLastIndex(lastIndex + 1 + listItems.size());
-        return ApiResponse.ok(response);
+        ItemListResponse itemList = itemListService.getItemList(searchStr, categories, lastIndex + 1);
+        return ApiResponse.ok(itemList);
     }
 
     @GetMapping(value = "/v1/category/list")

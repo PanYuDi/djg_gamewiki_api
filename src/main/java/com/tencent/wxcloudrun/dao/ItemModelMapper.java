@@ -8,6 +8,8 @@ import java.util.List;
 @Mapper
 public interface ItemModelMapper {
     List<ItemModel> getItemList(String searchStr, List<String> categories, Integer offset);
+
+    Integer getTotalCount(String searchStr, List<String> categories);
     int deleteByPrimaryKey(Long id);
 
     int insert(ItemModel record);
