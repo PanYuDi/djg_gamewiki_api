@@ -36,7 +36,7 @@
   </select>
 
   <select id="getItemList" resultMap="BaseResultMap">
-    select name, description, category_name, sub_category_name
+    select name, description, category_name, sub_category_name, id, sub_category_name, image_url
     from item_model
     <where>
       <if test="searchStr != null and searchStr != ''">
