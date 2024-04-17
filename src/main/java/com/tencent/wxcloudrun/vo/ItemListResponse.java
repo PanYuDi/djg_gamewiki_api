@@ -14,6 +14,7 @@ import java.util.List;
 @Data
 public class ItemListResponse {
     private List<ItemModel> itemList;
+    private List<String> categories;
     private Integer firstIndex;
     private Integer lastIndex;
     private Boolean hasMore;
