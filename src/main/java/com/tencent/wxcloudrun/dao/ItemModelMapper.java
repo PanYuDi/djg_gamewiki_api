@@ -2,6 +2,7 @@ package com.tencent.wxcloudrun.dao;
 
 import com.tencent.wxcloudrun.model.ItemModel;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -24,5 +25,5 @@ public interface ItemModelMapper {
 
     int updateByPrimaryKey(ItemModel record);
 
-    List<String> selectSubCategoryList(List<String> categories);
+    List<String> selectSubCategoryList(@Param("categories") List<String> categories);
 }
