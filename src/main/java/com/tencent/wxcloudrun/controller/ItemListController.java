@@ -1,5 +1,6 @@
 package com.tencent.wxcloudrun.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.tencent.wxcloudrun.config.ApiResponse;
 import com.tencent.wxcloudrun.model.ItemModel;
 import com.tencent.wxcloudrun.service.ItemListService;
@@ -33,13 +34,12 @@ public class ItemListController {
     }
 
     @GetMapping(value = "/v1/list")
-    public ApiResponse<ItemListResponse> getItemList(@RequestParam(required = false) String searchStr, @RequestParam(required = false) List<String> categories, @RequestParam(defaultValue = "-1", required = false) Integer lastIndex) {
+    public ApiResponse<ItemListResponse> getItemList(@RequestParam(required = false) String searchStr,
+                                                     @RequestParam(required = false) List<String> categories,
+                                                     @RequestParam(defaultValue = "-1", required = false) Integer lastIndex,
+                                                     @RequestParam(defaultValue = "false", required = false)Boolean isLoadMore
+    ) {
         ItemListResponse itemList = itemListService.getItemList(searchStr, categories, lastIndex + 1);
         return ApiResponse.ok(itemList);
-    }
-
-    @GetMapping(value = "/v1/category/list")
-    public ApiResponse<List<String>> getCategoryList() {
-        return null;
     }
 }

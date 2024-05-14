@@ -23,4 +23,6 @@ public interface ItemModelMapper {
     int updateByPrimaryKeyWithBLOBs(ItemModel record);
 
     int updateByPrimaryKey(ItemModel record);
+
+    List<String> selectSubCategoryList(List<String> categories);
 }

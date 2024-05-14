@@ -49,6 +49,7 @@
         </foreach>
       </if>
     </where>
+    order by sub_category_name desc
     <if test="offset != null">
       LIMIT 20 OFFSET #{offset}
     </if>
@@ -65,6 +66,18 @@
         <foreach item="id" collection="categories" open="(" separator="," close=")">
           #{id}
         </foreach>
+      </if>
+    </where>
+  </select>
+  <select id="selectSubCategoryList" resultType="java.lang.String">
+    select distinct sub_category_name from item_model
+    <where>
+      <if test="categories != null and categories.size() != 0">
+        and category_name in
+        <foreach item="id" collection="categories" open="(" separator="," close=")">
+          #{id}
+        </foreach>
+        and sub_category_name is not null
       </if>
     </where>
   </select>

@@ -38,6 +38,7 @@ public class ItemListServiceImpl implements ItemListService {
         Integer totalCount = itemModelMapper.getTotalCount(searchStr, categories);
         response.setHasMore(itemList.size() + offset < totalCount);
         response.setCategories(this.getCategories());
+        response.setSubCategories(this.itemModelMapper.selectSubCategoryList(categories));
         return response;
     }
 
