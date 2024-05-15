@@ -80,6 +80,7 @@
         and sub_category_name is not null
       </if>
     </where>
+    order by sub_category_name desc
   </select>
 
 
